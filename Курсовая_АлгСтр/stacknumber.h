@@ -9,7 +9,7 @@ private:
 		double date;
 		std::string numb;
 		stackNode* next;
-
+		bool integer;
 		stackNode(double date, stackNode* next = nullptr)
 		{
 			this->date = date;

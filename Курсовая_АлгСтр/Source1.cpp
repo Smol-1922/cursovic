@@ -5,13 +5,13 @@
 #include <sstream>
 #define _USE_MATH_DEFINES
 reverse_Polish_notation::reverse_Polish_notation() {
-	
+
 }
 void reverse_Polish_notation::vizov() {
 	std::getline(std::cin,infix_string);
 }
-void reverse_Polish_notation::voziv() {
-	std::cout << postfix_string;
+reverse_Polish_notation::~reverse_Polish_notation() {
+
 }
 double fact(int N)
 {
@@ -31,6 +31,9 @@ void reverse_Polish_notation::invert() {
 			|| infix_string[i] == '6' || infix_string[i] == '7'
 			|| infix_string[i] == '8' || infix_string[i] == '9' || infix_string[i] == '.') {
 			std::cout << infix_string[i];
+			if (infix_string[i] == '.') {
+				number.head->integer = true;
+			}
 			if (flag1) {
 				flag1 = false;
 				number.push(0);
@@ -58,8 +61,11 @@ void reverse_Polish_notation::invert() {
 		else {
 			if (!flag1) {
 				flag1 = true;
+				if (skipspace) {
+					std::cout << " ";
+				}
+				skipspace = true;
 			}
-			std::cout << " ";
 			prioritet = priority(infix_string[i]);
 			if (prioritet == 1) {
 				operators.push(infix_string[i]);
@@ -67,6 +73,10 @@ void reverse_Polish_notation::invert() {
 			else if (prioritet == 0) {
 				for (; priority(operators.head->date) != 1; operators.pop_front()) {
 					if (operators.head->date == '#') {
+						if (skipspace) {
+							std::cout << " ";
+						}
+						skipspace = true;
 						virath(operators.head->date);
 						for (int j = 0; j < operators.head->Queue.size; operators.head->Queue.pop()) {
 							std::cout << operators.head->Queue.head->date;
@@ -74,15 +84,24 @@ void reverse_Polish_notation::invert() {
 
 					}
 					else {
+						if (skipspace) {
+							std::cout << " ";
+						}
+						skipspace = true;
 						virath(operators.head->date);
 						std::cout << operators.head->date;
 					}
+					std::cout << " ";
 				}
 				operators.pop_front();
 			}
 			else if (prioritet == 2 || prioritet == 3 || (prioritet == 4 && flag)) {
 				if (operators.head != nullptr) {
 					for (; operators.head != nullptr && priority(operators.head->date) != 1 && priority(operators.head->date) >= prioritet; operators.pop_front()) {
+						if (skipspace) {
+							std::cout << " ";
+						}
+						skipspace = true;
 						if (operators.head->date == '#') {
 							virath(operators.head->date);
 							for (int j = 0; j < operators.head->Queue.size; operators.head->Queue.pop()) {
@@ -93,11 +112,16 @@ void reverse_Polish_notation::invert() {
 							virath(operators.head->date);
 							std::cout << operators.head->date;
 						}
+						std::cout << " ";
 					}
 				}
 				operators.push(infix_string[i]);
 			}
 			else if (prioritet == 4 && !flag) {
+				if (skipspace) {
+					std::cout << " ";
+				}
+				skipspace = true;
 				flag = true;
 				operators.push('#');
 				if (infix_string[i] == 'c' && empty(i)) {
@@ -182,6 +206,7 @@ void reverse_Polish_notation::invert() {
 
 	if (operators.size != 0) {
 		for (; operators.head != nullptr; operators.pop_front()) {
+				std::cout << " ";
 			if (operators.head->date == '#') {
 				virath(operators.head->date);
 				for (int j = 0; j < operators.head->Queue.size; operators.head->Queue.pop()) {
@@ -203,7 +228,7 @@ int reverse_Polish_notation::priority(char symbol) {
 	{
 	case '^':
 	case '!':
-	case'#':
+	case '#':
 		return 4;
 	case '*':
 	case '/':
@@ -243,15 +268,16 @@ void reverse_Polish_notation::virath(char operato) {
 	case '!':
 	{
 		shtoto = number.head->date;
-		if (0 < shtoto < 1) {
+		if (number.head->integer) {
 			shtoto = sqrt(2 * 3.1415 * number.head->date) * pow((number.head->date / 2.7182), number.head->date);
 			number.pop_front();
 			number.push(shtoto);
-			return;
 		}
-		shtoto = fact(number.head->date);
-		number.pop_front();
-		number.push(shtoto);
+		else {
+			shtoto = fact(number.head->date);
+			number.pop_front();
+			number.push(shtoto);
+		}
 		break;
 	}
 	case '*':
