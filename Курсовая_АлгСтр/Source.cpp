@@ -3,7 +3,6 @@
 #include<iostream>
 
 int main() {
-
 	reverse_Polish_notation* ship = new reverse_Polish_notation;
 	ship->vizov();
 	ship->invert();

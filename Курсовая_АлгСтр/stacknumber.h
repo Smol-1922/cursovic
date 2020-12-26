@@ -1,16 +1,16 @@
-#ifndef stack_H
-#define stack_H
+#ifndef stacknumber_H
+#define stacknumber_H
 #include"queue.h"
-class stackoper
+class stacknumber
 {
 private:
 	class stackNode {
 	public:
-		char date;
-		queue Queue;
+		double date;
+		std::string numb;
 		stackNode* next;
 
-		stackNode(char date, stackNode* next = nullptr)
+		stackNode(double date, stackNode* next = nullptr)
 		{
 			this->date = date;
 			this->next = next;
@@ -25,12 +25,12 @@ public:
 	stackNode* head;
 	stackNode* tail;
 	unsigned int size;
-	stackoper() {
+	stacknumber() {
 		head = nullptr;
 		tail = nullptr;
 		size = 0;
 	}
-	~stackoper() {
+	~stacknumber() {
 		clear();
 	}
 	void clear() {
@@ -39,7 +39,7 @@ public:
 			pop_front();
 		}
 	}
-	void push(char date) {
+	void push(double date) {
 		if (size == 0) {
 			head = new stackNode(date);
 			tail = head;

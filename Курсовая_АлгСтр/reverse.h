@@ -2,6 +2,7 @@
 #define reverse_H
 #include<string>
 #include"stack.h"
+#include"stacknumber.h"
 class reverse_Polish_notation
 {
 public:
@@ -11,11 +12,13 @@ public:
 	void voziv();
 	void invert();
 	int priority(char symbol);
+	bool empty(int index);
+	void virath(char operators);
 private:
-	stack operators;
+	stackoper operators;
 	std::string postfix_string;
 	std::string infix_string;
-	stack number;
-	bool flag,flag1=false;
+	stacknumber number;
+	bool flag = true, flag1 = true, skipspace = false;
 };
 #endif
