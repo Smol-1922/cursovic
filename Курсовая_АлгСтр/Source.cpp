@@ -10,5 +10,6 @@ int main() {
 	ship->vizov();
 	ship->invert();
 	std::cout << " = " << ship->rezultat();
+	std::cout << std::endl << ship->postfix_string;
 	return 0;
 }

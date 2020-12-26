@@ -1,8 +1,9 @@
 ﻿#include "pch.h"
 #include "CppUnitTest.h"
-#include "C:\Users\Dkvit\source\repos\"
-#include "C:\Users\Dkvit\source\repos\АлгСтр_данных_курсовая\АлгСтр_данных_курсовая\"
-#include "C:\Users\Dkvit\source\repos\АлгСтр_данных_курсовая\АлгСтр_данных_курсовая\"
+#include "C:\Users\Dkvit\source\repos\Курсовая_АлгСтр\Курсовая_АлгСтр\queue.h"
+#include "C:\Users\Dkvit\source\repos\Курсовая_АлгСтр\Курсовая_АлгСтр\reverse.h"
+#include "C:\Users\Dkvit\source\repos\Курсовая_АлгСтр\Курсовая_АлгСтр\queue.h"
+#include "C:\Users\Dkvit\source\repos\Курсовая_АлгСтр\Курсовая_АлгСтр\function.cpp"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest1
@@ -10,119 +11,125 @@ namespace UnitTest1
 	TEST_CLASS(UnitTest1)
 	{
 	public:
-		TEST_METHOD(BinarTree_Test1)
+		TEST_METHOD(Test1)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			Tree->insert(1);
-			Iterator* iter = Tree->create_dft_iterator();
-			Assert::IsTrue(iter->next() == 1);
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "45.44+6.56";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 52);
 		}
-
-		TEST_METHOD(BinarTree_Test2)
+		TEST_METHOD(Test2)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			try
-			{
-				Tree->create_dft_iterator();
-			}
-			catch (const char* warning)
-			{
-				Assert::AreEqual(warning, "This tree is empty");
-			}
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "45.4-6.5";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 38.9);
 		}
-		TEST_METHOD(BinarTree_Test3)
+		TEST_METHOD(Test3)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			int arr[10] = { 7,6,9,2,8,10,1,4,3,5 };
-			for (int i = 0; i < 10; i++) {
-				Tree->insert(arr[i]);
-			};
-			Iterator* iter = Tree->create_bft_iterator();
-			for (int i = 0; i < 10; i++) {
-				Assert::IsTrue(arr[i] == iter->next());
-			}
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "45.44/2";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 22.72);
 		}
-
-		TEST_METHOD(BinarTree_Test4)
+		TEST_METHOD(Test4)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			int arr[10] = { 7,6,2,1,4,3,5,9,8,10 };
-			for (int i = 0; i < 10; i++) Tree->insert(arr[i]);
-			Iterator* iter = Tree->create_dft_iterator();
-			for (int i = 0; i < 10; i++) Assert::IsTrue(arr[i] == iter->next());
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "45.44*2";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 90.88);
 		}
-
-		TEST_METHOD(BinarTree_Test5)
+		TEST_METHOD(Test5)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			int arr[10] = { 7,6,2,1,4,3,5,9,8,10 };
-			for (int i = 0; i < 10; i++) {
-				Tree->insert(arr[i]);
-				Assert::IsTrue(Tree->contains(arr[i]));
-			}
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "2^3";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 8);
 		}
-
-		TEST_METHOD(BinarTree_Test6)
+		TEST_METHOD(Test6)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			int arr[10] = { 7,6,9,8,10,2,1,4,3,5 };
-			for (int i = 0; i < 10; i++) Tree->insert(arr[i]);
-			Assert::IsFalse(Tree->contains(15));
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "4!";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 24);
 		}
-
-		TEST_METHOD(BinarTree_Test7)
+		TEST_METHOD(Test7)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			try
-			{
-				Tree->contains(1);
-			}
-			catch (const char* warning)
-			{
-				Assert::AreEqual(warning, "This tree is empty");
-			}
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "log(100)";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 2);
 		}
-
-		TEST_METHOD(BinarTree_Test8)
+		TEST_METHOD(Test8)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			int arr[10] = { 7,6,9,8,10,2,1,4,3,5 };
-			for (int i = 0; i < 10; i++) {
-				Tree->insert(arr[i]);
-			}
-			Tree->remove(1);
-			Assert::IsFalse(Tree->contains(1));
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "ln(e^3)";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 3);
 		}
-
-		TEST_METHOD(BinarTree_Test9)
+		TEST_METHOD(Test9)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			int arr[10] = { 7,6,9,8,10,2,1,4,3,5 };
-			for (int i = 0; i < 10; i++) {
-				Tree->insert(arr[i]);
-			}
-			try
-			{
-				Tree->remove(16);
-			}
-			catch (const char* warning)
-			{
-				Assert::AreEqual(warning, "No such element exists");
-			}
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "cos(pi)";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == -1);
 		}
-
-		TEST_METHOD(BinarTree_Test10)
+		TEST_METHOD(Test10)
 		{
-			BinaryTree* Tree = new BinaryTree;
-			try
-			{
-				Tree->remove(1);
-			}
-			catch (const char* warning)
-			{
-				Assert::AreEqual(warning, "No such element exists");
-			}
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "sin(0)";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 0);
 		}
-
+		TEST_METHOD(Test11)
+		{
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "tg(pi/4)";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == tan(acos(-1.0)/4));
+		}
+		TEST_METHOD(Test12)
+		{
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "ctg(pi/4)";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 1/tan(acos(-1.0) / 4));//acos(-1.0)=pi
+		}
+		TEST_METHOD(Test13)
+		{
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "sqrt(36)";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 6);
+		}
+		TEST_METHOD(Test14)
+		{
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "(((log(10)+ln(e)+cos(0)+sin(pi)-6)*3)+3^3)/0.5";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->postfix_string == "10  log  e ln  +  0  cos  +  pi sin  + 6  - 3  * 3 3  ^  + 0.5 /" );
+		}
+		TEST_METHOD(Test15)
+		{
+			reverse_Polish_notation* ship = new reverse_Polish_notation;
+			std::string str = "(((log(10)+ln(e)+cos(0)+sin(pi)-3!)*3)+3^3)/3";
+			ship->infix_string = str;
+			ship->invert();
+			Assert::IsTrue(ship->rezultat() == 6);
+		}
 	};
 }
