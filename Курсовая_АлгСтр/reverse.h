@@ -10,13 +10,15 @@ public:
 	~reverse_Polish_notation();
 	void vizov();
 	void invert();
-	int priority(char symbol);
-	bool empty(int index);
+	size_t priority(char symbol);
+	bool empty(size_t index);
 	void virath(char operators);
+	double rezultat();
 private:
 	stackoper operators;
 	std::string infix_string;
 	stacknumber number;
+	double rezult;
 	bool flag = true, flag2 = false, flag1 = true, skipspace = false;
 };
 #endif

@@ -9,7 +9,7 @@ private:
 		char date;
 		queue Queue;
 		stackNode* next;
-
+		size_t index;
 		stackNode(char date, stackNode* next = nullptr)
 		{
 			this->date = date;

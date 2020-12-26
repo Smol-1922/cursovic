@@ -10,6 +10,7 @@ private:
 		std::string numb;
 		stackNode* next;
 		bool integer;
+		size_t index;
 		stackNode(double date, stackNode* next = nullptr)
 		{
 			this->date = date;

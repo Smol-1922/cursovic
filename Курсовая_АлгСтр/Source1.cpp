@@ -1,4 +1,4 @@
-#include"reverse.h"
+﻿#include"reverse.h"
 #include<iostream>
 #include<string>
 #include <cmath>
@@ -8,7 +8,7 @@ reverse_Polish_notation::reverse_Polish_notation() {
 
 }
 void reverse_Polish_notation::vizov() {
-	std::getline(std::cin,infix_string);
+	std::getline(std::cin, infix_string);
 }
 reverse_Polish_notation::~reverse_Polish_notation() {
 
@@ -44,27 +44,26 @@ void reverse_Polish_notation::invert() {
 		else if (infix_string[i] == 'p' && empty(i)) {
 			std::cout << infix_string[i];
 			if (infix_string[i + 1] == 'i') {
-				std::cout << infix_string[i+1];
+				std::cout << infix_string[i + 1];
 				number.push(acos(-1.0));
 				i++;
 			}
 			else
 			{
-				std::cout << "������ �����";
+				std::cout << "ошибка ввода";
 				return;
 			}
 		}
-		else if (infix_string[i] == 'e' && empty(i)){
+		else if (infix_string[i] == 'e' && empty(i)) {
 			std::cout << infix_string[i];
 			number.push(exp(1));
-			}
+		}
 		else {
 			if (!flag1) {
+				number.head->index = i;
 				flag1 = true;
-				if (skipspace) {
-					std::cout << " ";
-				}
 				skipspace = true;
+					std::cout << " ";
 			}
 			prioritet = priority(infix_string[i]);
 			if (prioritet == 1) {
@@ -127,92 +126,176 @@ void reverse_Polish_notation::invert() {
 				if (infix_string[i] == 'c' && empty(i)) {
 					if (empty(i + 1) && empty(i + 2)) {
 						if (infix_string[i + 1] == 'o') {
-							for (int j = i; j < i + 3; ++j)
-								operators.head->Queue.push(infix_string[j]);
-							i += 2;
+							if (infix_string[i + 2] == 's') {
+								for (int j = i; j < i + 3; ++j)
+									operators.head->Queue.push(infix_string[j]);
+								operators.head->index = i + 3;
+								i += 2;
+							}
+							else
+							{
+								std::cout << "Ошибка ввода ошибка в позиции: " << i + 3;
+								return;
+							}
 						}
-						else {
-							for (int j = i; j < i + 3; ++j)
-								operators.head->Queue.push(infix_string[j]);
-							i += 2;
+						else if (infix_string[i + 1] == 't') {
+							if (infix_string[i + 2] == 'g') {
+								for (int j = i; j < i + 3; ++j)
+									operators.head->Queue.push(infix_string[j]);
+								operators.head->index = i + 3;
+								i += 2;
+							}
+							else
+							{
+								std::cout << "Ошибка ввода ошибка в позиции: " << i + 3;
+								return;
+							}
+
+						}
+						else
+						{
+							std::cout << "Ошибка ввода ошибка в позиции: " << i + 2;
+							return;
 						}
 					}
 					else
 					{
-						std::cout << "������ �����";
+						std::cout << "Ошибка ввода ошибка в позиции: " << i + 1;
 						return;
 					}
 				}
 				else if (infix_string[i] == 'l') {
 					if (empty(i + 1)) {
 						if (infix_string[i + 1] == 'o' && empty(i + 2)) {
-							for (int j = i; j < i + 3; ++j)
-								operators.head->Queue.push(infix_string[j]);
-							i += 2;
+							if (infix_string[i + 2] == 'g') {
+								for (int j = i; j < i + 3; ++j)
+									operators.head->Queue.push(infix_string[j]);
+								operators.head->index = i + 3;
+								i += 2;
+							}
+							else
+							{
+								std::cout << "Ошибка ввода ошибка в позиции: " << i + 3;
+								return;
+							}
 						}
 						else if (empty(i + 1)) {
-
-							for (int j = i; j < i + 2; ++j)
-								operators.head->Queue.push(infix_string[j]);
-							i += 1;
+							if (infix_string[i + 1] == 'n') {
+								for (int j = i; j < i + 2; ++j)
+									operators.head->Queue.push(infix_string[j]);
+								operators.head->index = i + 2;
+								i += 1;
+							}
+							else
+							{
+								std::cout << "Ошибка ввода ошибка в позиции: " << i + 2;
+								return;
+							}
+						}
+						else
+						{
+							std::cout << "Ошибка ввода ошибка в позиции: " << i + 2;
+							return;
 						}
 					}
 					else
 					{
-						std::cout << "������ �����";
+						std::cout << "Ошибка ввода ошибка в позиции: " << i + 1;
 						return;
 					}
 				}
 				else if (infix_string[i] == 's') {
 					if (empty(i + 1) && empty(i + 2)) {
 						if (infix_string[i + 1] == 'i') {
-							for (int j = i; j < i + 3; ++j)
-								operators.head->Queue.push(infix_string[j]);
-							i += 2;
+							if (infix_string[i + 2] == 'n') {
+								for (int j = i; j < i + 3; ++j)
+									operators.head->Queue.push(infix_string[j]);
+								operators.head->index = i + 3;
+								i += 2;
+							}
+							else
+							{
+								std::cout << "Ошибка ввода ошибка в позиции: " << i + 3;
+								return;
+							}
 						}
-						else if(empty(i + 3)) {
-							for (int j = i; j < i + 4; ++j)
-								operators.head->Queue.push(infix_string[j]);
-							i += 3;
+						else if (empty(i + 3)) {
+							if (infix_string[i + 1] == 'q') {
+								if (infix_string[i + 2] == 'r') {
+									if (infix_string[i + 3] == 't') {
+										for (int j = i; j < i + 4; ++j)
+											operators.head->Queue.push(infix_string[j]);
+										operators.head->index = i + 4;
+										i += 3;
+									}
+									else
+									{
+										std::cout << "Ошибка ввода ошибка в позиции: " << i + 4;
+										return;
+									}
+								}
+								else
+								{
+									std::cout << "Ошибка ввода ошибка в позиции: " << i + 3;
+									return;
+								}
+							}
+							else
+							{
+								std::cout << "Ошибка ввода ошибка в позиции: " << i + 2;
+								return;
+							}
+						}
+						else
+						{
+							std::cout << "Ошибка ввода ошибка в позиции: " << i + 2;
+							return;
 						}
 					}
 					else
 					{
-						std::cout << "������ �����";
+						std::cout << "Ошибка ввода ошибка в позиции: " << i + 1;
 						return;
 					}
 				}
 				else if (infix_string[i] == 't') {
 					if (empty(i + 1)) {
-						for (int j = i; j < i + 2; ++j)
-							operators.head->Queue.push(infix_string[j]);
-						i += 1;
+						if (infix_string[i + 1] == 'g') {
+							for (int j = i; j < i + 2; ++j)
+								operators.head->Queue.push(infix_string[j]);
+							operators.head->index = i + 2;
+							i += 1;
+						}
+						else
+						{
+							std::cout << "Ошибка ввода ошибка в позиции: " << i + 2;
+						}
 					}
 					else
 					{
-						std::cout << "������ �����";
+						std::cout << "Ошибка ввода ошибка в позиции: " << i + 1;
 						return;
 					}
 				}
+				else
+				{
+					std::cout << "Ошибка ввода ошибка в позиции: " << i + 1;
+					return;
 
-			}
-			else
-			{
-			std::cout << "������ �����";
-			return;
+				}
 			}
 		}
 	}
 
 	if (operators.size != 0) {
 		for (; operators.head != nullptr; operators.pop_front()) {
-				std::cout << " ";
+			std::cout << " ";
 			if (operators.head->date == '#') {
 				virath(operators.head->date);
 				for (int j = 0; j < operators.head->Queue.size; operators.head->Queue.pop()) {
 					std::cout << operators.head->Queue.head->date;
 				}
-				
+
 			}
 			else {
 				virath(operators.head->date);
@@ -220,10 +303,12 @@ void reverse_Polish_notation::invert() {
 			}
 		}
 	}
-	std::cout <<" = "<<number.head->date;
+	rezult = number.head->date;
 }
-// ctg,!
-int reverse_Polish_notation::priority(char symbol) {
+double reverse_Polish_notation::rezultat() {
+	return rezult;
+}
+size_t reverse_Polish_notation::priority(char symbol) {
 	switch (symbol)
 	{
 	case '^':
@@ -248,7 +333,7 @@ int reverse_Polish_notation::priority(char symbol) {
 
 	}
 }
-bool reverse_Polish_notation::empty(int index) {
+bool reverse_Polish_notation::empty(size_t index) {
 	if (infix_string.length() >= index + 1) {
 		return 1;
 	}
@@ -259,6 +344,14 @@ void reverse_Polish_notation::virath(char operato) {
 	switch (operato)
 	{
 	case '^': {
+		if (number.head == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index-1;
+			exit(0);
+		}
+		if (number.head->next == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index;
+			exit(0);
+		}
 		shtoto = pow(number.head->next->date, number.head->date);
 		number.pop_front();
 		number.pop_front();
@@ -267,6 +360,10 @@ void reverse_Polish_notation::virath(char operato) {
 	}
 	case '!':
 	{
+		if (number.head == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index;
+			exit(0);
+		}
 		shtoto = number.head->date;
 		if (number.head->integer) {
 			shtoto = sqrt(2 * 3.1415 * number.head->date) * pow((number.head->date / 2.7182), number.head->date);
@@ -282,6 +379,14 @@ void reverse_Polish_notation::virath(char operato) {
 	}
 	case '*':
 	{
+		if (number.head == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index-1;
+			exit(0);
+		}
+		if (number.head->next == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index;
+			exit(0);
+		}
 		shtoto = number.head->next->date * number.head->date;
 		number.pop_front();
 		number.pop_front();
@@ -290,6 +395,14 @@ void reverse_Polish_notation::virath(char operato) {
 	}
 	case '/':
 	{
+		if (number.head == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index - 1;
+			exit(0);
+		}
+		if (number.head->next == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index;
+			exit(0);
+		}
 		shtoto = number.head->next->date / number.head->date;
 		number.pop_front();
 		number.pop_front();
@@ -298,6 +411,14 @@ void reverse_Polish_notation::virath(char operato) {
 	}
 	case '-':
 	{
+		if (number.head == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index - 1;
+			exit(0);
+		}
+		if (number.head->next == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index;
+			exit(0);
+		}
 		shtoto = number.head->next->date - number.head->date;
 		number.pop_front();
 		number.pop_front();
@@ -306,49 +427,63 @@ void reverse_Polish_notation::virath(char operato) {
 	}
 	case '+':
 	{
+		if (number.head == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index - 1;
+			exit(0);
+		}
+		if (number.head->next == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index;
+			exit(0);
+		}
+		
 		shtoto = number.head->next->date + number.head->date;
 		number.pop_front();
 		number.pop_front();
 		number.push(shtoto);
 		break;
 	}
-	case '#': 
+	case '#':
 	{
+		if (number.head == nullptr) {
+			std::cout << "недостаточно переменных на позиции: " << operators.head->index;
+			exit(0);
+		}
 		if (operators.head->Queue.head->date == 'c') {
-				if (operators.head->Queue.head->next->date == 'o') {
-					shtoto = cos(number.head->date);
-					number.pop_front();
-					number.push(shtoto);
-				}
-				else {
-					shtoto = 1/tan(number.head->date);
-					number.pop_front();
-					number.push(shtoto);
-				}
+			if (operators.head->Queue.head->next->date == 'o') {
+				shtoto = cos(number.head->date);
+				number.pop_front();
+				number.push(shtoto);
+			}
+			else {
+				shtoto = 1 / tan(number.head->date);
+				number.pop_front();
+				number.push(shtoto);
+			}
 		}
 		else if (operators.head->Queue.head->date == 'l') {
-				if (operators.head->Queue.head->next->date == 'o') {
-					shtoto = log10(number.head->date);
-					number.pop_front();
-					number.push(shtoto);
-				}
-				else  {
-					shtoto = log(number.head->date);
-					number.pop_front();
-					number.push(shtoto);
-				}
+			if (operators.head->Queue.head->next->date == 'o') {
+				shtoto = log10(number.head->date);
+				number.pop_front();
+				number.push(shtoto);
+			}
+			else {
+				shtoto = log(number.head->date);
+				number.pop_front();
+				number.push(shtoto);
+			}
 		}
 		else if (operators.head->Queue.head->date == 's') {
-				if (operators.head->Queue.head->next->date == 'i') {
-					shtoto = sin(number.head->date);
-					number.pop_front();
-					number.push(shtoto);
-				}
-				else  {
-					shtoto = sqrt(number.head->date);
-					number.pop_front();
-					number.push(shtoto);
-				}
+			if (operators.head->Queue.head->next->date == 'i') {
+				shtoto = sin(number.head->date);
+				number.pop_front();
+				number.push(shtoto);
+			}
+			else {
+
+				shtoto = sqrt(number.head->date);
+				number.pop_front();
+				number.push(shtoto);
+			}
 		}
 		else if (operators.head->Queue.head->date == 't') {
 			shtoto = tan(number.head->date);
