@@ -7,7 +7,7 @@
 reverse_Polish_notation::reverse_Polish_notation() {
 	infix_string = "";
 }
-void reverse_Polish_notation::vizov() {
+void reverse_Polish_notation::call() {
 	std::getline(std::cin, infix_string);
 }
 reverse_Polish_notation::~reverse_Polish_notation() {
@@ -35,8 +35,8 @@ void reverse_Polish_notation::invert() {
 			if (infix_string[i] == '.') {
 				number.head->integer = true;
 			}
-			if (flag1) {
-				flag1 = false;
+			if (now) {
+				now = false;
 				number.push(0);
 			}
 			number.head->numb += infix_string[i];
@@ -63,9 +63,9 @@ void reverse_Polish_notation::invert() {
 			number.push(exp(1));
 		}
 		else {
-			if (!flag1) {
+			if (!now) {
 				number.head->index = i;
-				flag1 = true;
+				now = true;
 				skipspace = true;
 				postfix_string += " ";
 					std::cout << " ";
@@ -82,7 +82,7 @@ void reverse_Polish_notation::invert() {
 							postfix_string += " ";
 						}
 						skipspace = true;
-						virath(operators.head->date);
+						realization(operators.head->date);
 						for (int j = 0; j < operators.head->Queue.size; operators.head->Queue.pop()) {
 							std::cout << operators.head->Queue.head->date;
 							postfix_string += operators.head->Queue.head->date;
@@ -95,7 +95,7 @@ void reverse_Polish_notation::invert() {
 							postfix_string += " ";
 						}
 						skipspace = true;
-						virath(operators.head->date);
+						realization(operators.head->date);
 						std::cout << operators.head->date;
 						postfix_string += operators.head->date;
 					}
@@ -113,14 +113,14 @@ void reverse_Polish_notation::invert() {
 						}
 						skipspace = true;
 						if (operators.head->date == '#') {
-							virath(operators.head->date);
+							realization(operators.head->date);
 							for (int j = 0; j < operators.head->Queue.size; operators.head->Queue.pop()) {
 								std::cout << operators.head->Queue.head->date;
 								postfix_string += operators.head->Queue.head->date;
 							}
 						}
 						else {
-							virath(operators.head->date);
+							realization(operators.head->date);
 							std::cout << operators.head->date;
 							postfix_string += operators.head->date;
 						}
@@ -307,7 +307,7 @@ void reverse_Polish_notation::invert() {
 			std::cout << " ";
 			postfix_string += " ";
 			if (operators.head->date == '#') {
-				virath(operators.head->date);
+				realization(operators.head->date);
 				for (int j = 0; j < operators.head->Queue.size; operators.head->Queue.pop()) {
 					postfix_string += operators.head->Queue.head->date;
 					std::cout << operators.head->Queue.head->date;
@@ -315,7 +315,7 @@ void reverse_Polish_notation::invert() {
 
 			}
 			else {
-				virath(operators.head->date);
+				realization(operators.head->date);
 				postfix_string += operators.head->date;
 				std::cout << operators.head->date;
 			}
@@ -323,7 +323,7 @@ void reverse_Polish_notation::invert() {
 	}
 	rezult = number.head->date;
 }
-double reverse_Polish_notation::rezultat() {
+double reverse_Polish_notation::result() {
 	return rezult;
 }
 size_t reverse_Polish_notation::priority(char symbol) {
@@ -357,7 +357,7 @@ bool reverse_Polish_notation::empty(size_t index) {
 	}
 	return 0;
 }
-void reverse_Polish_notation::virath(char operato) {
+void reverse_Polish_notation::realization(char operato) {
 	double shtoto;
 	switch (operato)
 	{

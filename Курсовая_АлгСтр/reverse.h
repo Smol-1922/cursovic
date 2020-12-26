@@ -10,16 +10,16 @@ public:
 	std::string postfix_string;
 	reverse_Polish_notation();
 	~reverse_Polish_notation();
-	void vizov();
+	void call();
 	void invert();
 	size_t priority(char symbol);
 	bool empty(size_t index);
-	void virath(char operators);
-	double rezultat();
+	void realization(char operators);
+	double result();
 private:
 	stackoper operators;
 	stacknumber number;
 	double rezult;
-	bool flag = true, flag2 = false, flag1 = true, skipspace = false;
+	bool flag = true, now = true, skipspace = false;
 };
 #endif
