@@ -118,18 +118,18 @@ namespace UnitTest1
 		TEST_METHOD(Test14)
 		{
 			reverse_Polish_notation* ship = new reverse_Polish_notation;
-			std::string str = "(((log(10)+ln(e)+cos(0)+sin(pi)-6)*3)+3^3)/0.5";
+			std::string str = "(6*tg((pi/4))^6+6*log((6+4)^8))/3!";
 			ship->infix_string = str;
 			ship->invert();
-			Assert::IsTrue(ship->postfix_string == "10  log  e ln  +  0  cos  +  pi sin  + 6  - 3  * 3 3  ^  + 0.5 /" );
+			Assert::IsTrue(ship->postfix_string == "6  pi4  /  tg 6  ^  * 6  6 4  + 8  ^  log  *  + 3  ! /" );
 		}
 		TEST_METHOD(Test15)
 		{
 			reverse_Polish_notation* ship = new reverse_Polish_notation;
-			std::string str = "(((log(10)+ln(e)+cos(0)+sin(pi)-3!)*3)+3^3)/3";
+			std::string str = "(6*tg((pi/4))^6+6*log((6+4)^8))/3!";
 			ship->infix_string = str;
 			ship->invert();
-			Assert::IsTrue(ship->result() == 6);
+			Assert::IsTrue(ship->result() == 9);
 		}
 	};
 }
